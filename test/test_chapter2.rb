@@ -15,9 +15,11 @@ class TestChapter2 < Test::Unit::TestCase
     assert_equal 0, similarity_score
   end
 
-  def test_similar_items
+  def test_similar_items_sim_distance
     people = @recommender.sample_data
     similarity_score = @recommender.sim_distance(people, 'Lisa Rose', 'Gene Seymour')
     assert_in_delta 0.294298055085549, similarity_score, 0.00001
   end
+
+
 end
