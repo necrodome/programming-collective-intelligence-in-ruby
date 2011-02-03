@@ -14,8 +14,14 @@ module Chapter2
       return 0 if prefs[person1].keys.detect {|item| prefs[person2].keys.include? item }.nil?
 
       # Add up the squares of all the differences
+      squares = []
+      for item in prefs[person1].keys
+        if prefs[person2].include? item
+          squares << (prefs[person1][item] - prefs[person2][item]) ** 2
+        end
+      end
 
-      sum_of_squares = prefs[person1].inject(0) {|result, element| result + ((prefs[person1][element.first] - prefs[person2][element.first]) ** 2) unless prefs[person2][element.first].nil?}
+      sum_of_squares = squares.inject { |sum,value| sum += value }
       return 1/(1+Math::sqrt(sum_of_squares))
     end
 
