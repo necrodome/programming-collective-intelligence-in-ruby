@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+
+{:after_all_tests => lambda do |success, ran_at, files, statuses|
+  icon = success ? 'apple-green' : 'apple-red'
+  title = "#{success ? 'PASS' : 'FAIL'} at #{ran_at}"
+  details = files.zip(statuses).map do |file, status|
+    "#{status.success? ? '✔' : '✘'} #{file}"
+  end
+  system 'growlnotify', '-i', icon, '-t', title, '-m', details.join("\n")
+end
+}
