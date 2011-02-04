@@ -21,5 +21,11 @@ class TestChapter2 < Test::Unit::TestCase
     assert_in_delta 0.294298055085549, similarity_score, 0.00001
   end
 
+  def test_similar_items_sim_pearson
+    people = @recommender.sample_data
+    similarity_score = @recommender.sim_pearson(people, 'Lisa Rose', 'Gene Seymour')
+    assert_in_delta 0.396059017191, similarity_score, 0.00001
+  end
+
 
 end
