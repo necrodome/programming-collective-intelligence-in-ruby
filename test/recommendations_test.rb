@@ -27,5 +27,18 @@ class TestChapter2 < Test::Unit::TestCase
     assert_in_delta 0.396059017191, similarity_score, 0.00001
   end
 
+  def test_top_matches
+    people = @recommender.sample_data
+    matches = @recommender.top_matches(people, 'Toby', 3)
+
+    assert_equal 3, matches.length
+
+    assert_equal "Lisa Rose", matches.first[1]
+    assert_in_delta 0.99124070716192991, matches.first[0], 0.00001
+
+    assert_equal "Mick LaSalle", matches[1][1]
+    assert_in_delta 0.92447345164190486, matches[1][0], 0.00001
+  end
+
 
 end

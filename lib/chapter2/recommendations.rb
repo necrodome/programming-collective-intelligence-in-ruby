@@ -53,6 +53,13 @@ module Chapter2
       r = num / den
     end
 
+    def top_matches(prefs, person, n = 5, similarity = :sim_pearson)
+      scores = prefs.keys.collect {|other| [self.send(similarity, prefs, person, other), other] if other != person}.compact
+      scores.sort!
+      scores.reverse!
+      scores[0...n]
+    end
+
   end
 end
 
