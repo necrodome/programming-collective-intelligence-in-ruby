@@ -53,6 +53,7 @@ module Chapter2
       r = num / den
     end
 
+    # Returns the best matches for person from the prefs hash.
     def top_matches(prefs, person, n = 5, similarity = :sim_pearson)
       scores = prefs.keys.collect {|other| [self.send(similarity, prefs, person, other), other] if other != person}.compact
       scores.sort!
